@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block titulo %}
+Registro
+{% endblock titulo %}
+{% block contenido %}
+<form method="post">
+    {% csrf_token %}
+<div class="container mt-5">
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-6">
+            <div class="card px-5 py-5" id="form1">
+                <h3>Registro :D</h3>
+                {{form.as_p}}
+                <button class="btn btn-primary">Registrar</button>
+                <a href="{% url 'Home' %}">Regresar</a>
+            </div>
+        </div>
+    </div>
+</div>
+</form>
+{% endblock contenido %}

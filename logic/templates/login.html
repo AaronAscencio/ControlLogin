@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block titulo %}
+Inicio de Sesion
+{% endblock titulo %}
+
+{% block contenido %}
+<form method="post">
+    {% csrf_token %}
+<div class="container mt-5">
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-6">
+            <div class="card px-5 py-5" id="form1">
+                <div class="form-data" v-if="!submitted">
+                    <div class="form-group mb-4">
+                         <span>Ingresa tu usuario
+
+                         </span> 
+                         <input autocomplete="off" type="text" name="username" v-model="email" v-bind:class="{'form-control':true, 'is-invalid' : !validEmail(email) && emailBlured}" v-on:blur="emailBlured = true">
+                        <div class="invalid-feedback">A valid email is required!</div>
+                    </div>
+                    <div class="form-group mb-4"> 
+                        <span>Contraseña</span>
+                         <input autocomplete="off" type="password" name="password" v-model="password" v-bind:class="{'form-control':true, 'is-invalid' : !validPassword(password) && passwordBlured}" v-on:blur="passwordBlured = true">
+                        <div class="invalid-feedback">Password must be 8 character!</div>
+                    </div>
+                    <div class="mb-3"> <button v-on:click.stop.prevent="submit" class="btn btn-dark w-100">Ingresar</button> </div>
+                </div>
+                <div class="success-data" v-else>
+                    <div class="text-center d-flex flex-column"> <i class='bx bxs-badge-check'></i> <span class="text-center fs-1"><a href="{% url 'Registro' %}">Registro</a> <br> <a href="{% url 'reset_password' %}">¿Has olvidado tu contraseña?</a></span> </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</form>
+{% endblock contenido %}
